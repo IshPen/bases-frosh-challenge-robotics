@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Built to Order</title>
+<title>Beyond the Human Form</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8,10 +8,10 @@
 /* Layout: one fixed low-poly 3D canvas behind tall scroll sections; each section pins a 100vh stage
    with a glass text card on the left and instrument panels on the right. Solid = physical, wireframe = simulated. */
 :root{
-  color-scheme: dark;
-  --void:#0B1020; --void2:#1B2440; --ink:#E8ECF6; --mute:#9AA6C4; --dim:#66729A;
-  --line:rgba(154,166,196,.24); --glass:rgba(13,19,38,.74); --glass2:rgba(13,19,38,.9);
-  --cyan:#3DDCFF; --orange:#FF6B35; --fail:#FF3B5C; --pass:#4ADE80; --gold:#F5C451; --amber:#FFB547;
+  color-scheme: light;
+  --void:#eef6fc; --void2:#dcebf7; --ink:#16203a; --mute:#3f4b74; --dim:#66729a;
+  --line:rgba(30,45,95,.16); --glass:rgba(255,255,255,.84); --glass2:rgba(255,255,255,.93);
+  --cyan:#0a84b6; --orange:#ee5a24; --fail:#d42c4f; --pass:#1d9a52; --gold:#c4870f; --amber:#d0820c;
   --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -375,6 +375,47 @@ input[type=range]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px
 .closer{width:min(1000px,calc(100% - var(--sb) - 24px));left:calc(50% - var(--sb)/2)}
 .card{max-height:calc(100vh - 100px);overflow:hidden}
 @media (max-width:999px){.impacts{grid-template-columns:1fr}.closer{left:50%;width:92%}}
+
+/* v5: longer copy */
+.card.long{width:min(560px,100%);gap:10px}
+.card.long .h{font-size:clamp(21px,2.1vw,30px)}
+.card.long .lede{font-size:clamp(13.5px,1.02vw,15px);line-height:1.55;max-width:none;color:#c9d1e8}
+.reasons b{color:var(--ink);font-weight:600}
+.reasons{font-size:clamp(13.5px,1.02vw,15px);line-height:1.5;color:#c9d1e8}
+.qa{font-size:clamp(14.5px,1.15vw,17px)}
+.qrow{padding:12px 16px}
+.impacts span{font-size:13.5px;line-height:1.5}
+.closer .h{font-size:clamp(28px,4vw,54px)}
+
+/* v6: bright daytime palette, text clear of the 3D */
+#sky{background:radial-gradient(60% 50% at 78% 18%, rgba(255,244,214,.95) 0%, transparent 60%), linear-gradient(180deg,#8fd3ff 0%,#cdeaff 52%,#fff0dc 100%)}
+#neon{background:radial-gradient(50% 45% at 72% 30%, rgba(255,247,220,1) 0%, rgba(255,226,180,.5) 30%, transparent 62%), linear-gradient(180deg,#77c3f6 0%,#b9e1ff 45%,#ffe7cc 82%,#ffcfa8 100%)}
+#dawn{display:none}
+.scrim{background:linear-gradient(0deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.55) 42%,transparent 100%);height:58%}
+.shot{width:min(640px,calc(100% - var(--sb) - 24px))}
+.shot-h{font-size:clamp(30px,4vw,58px);color:var(--ink);text-shadow:0 2px 26px rgba(255,255,255,.95)}
+.shot-sub{color:var(--ink);text-shadow:0 1px 14px rgba(255,255,255,.95)}
+.bigq{color:var(--ink);text-shadow:0 2px 30px rgba(255,255,255,.95),0 0 2px rgba(255,255,255,.9)}
+.card{box-shadow:0 10px 40px rgba(30,60,120,.14)}
+.card.long .lede,.reasons{color:var(--mute)}
+.card.long .lede b{color:var(--ink);font-weight:600}
+.mk{color:#7a1630}
+.chip.or{color:#b8410f}.chip.bad{color:#b31d40}
+#tabs button{box-shadow:0 2px 10px rgba(30,60,120,.08)}
+#tabs button.on{background:rgba(238,90,36,.12)}
+.btn{background:rgba(10,132,182,.1)}
+.sidelab.real{color:var(--ink);border-color:var(--ink)}
+.divider{left:calc(50% + var(--vx,0px));border-left-color:rgba(22,32,58,.35)}
+.sidelab.real{right:calc(50% - var(--vx,0px) + 14px)}
+.sidelab.sim{left:calc(50% + var(--vx,0px) + 14px)}
+.closer2 .btns{justify-content:flex-start;margin-top:4px}
+.closer2 .foot{margin:0}
+#hint{color:var(--ink)}
+
+.answer{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;background:rgba(238,90,36,.08);border-left:3px solid var(--orange);border-radius:2px;padding:9px 12px}
+.answer b{font-family:var(--f-display);font-stretch:115%;font-weight:800;font-size:18px;color:var(--orange);line-height:1.2}
+.answer p{margin:0;font-size:clamp(13.5px,1.02vw,15px);line-height:1.5;color:var(--ink)}
+.qgrid{width:min(700px,calc(100% - var(--sb) - 40px))}
 </style>
 </head><body>
 
@@ -383,59 +424,32 @@ input[type=range]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px
 <div id="neon"></div>
 <canvas id="gl" aria-hidden="true"></canvas>
 <div id="veil"></div>
-
 <nav id="tabs" aria-label="Sections"></nav>
 <div id="hint">SCROLL <i>&darr;</i></div>
-
 <main id="story">
-
-<!-- 2046 · CITY SHOTS -->
-<section class="slide" id="city1" style="--pin:1.5" data-tab="2046" data-stops="0,.75">
- <div class="stage">
-  <div class="scrim"></div>
-  <div class="shot">
-    <p class="qtag">BASES 6-Hour Challenge · Robotics · 2046</p>
-    <h1 class="shot-h">2046. Every job has a robot built for it.</h1>
-    <p class="shot-sub">Not one robot that tries to do everything. Thousands of specialists, each shaped by the task it was made for.</p>
-  </div>
+<section class="slide" id="city1" style="--pin:1.4" data-tab="2046" data-stops="0">
+ <div class="stage"><div class="scrim"></div><div class="shot"><p class="qtag">BASES 6-Hour Challenge · Robotics · Team I Hope This Form Can Handle Emojis 🌞</p><h1 class="shot-h">2046. Every job has a robot built for it.</h1><p class="shot-sub">Not one robot that tries to do everything. Thousands of specialists, each shaped by the task it was made for.</p></div>
  </div>
 </section>
 
-<section class="slide" id="city2" style="--pin:1.4" data-tab="2046" data-stops="0,.7">
- <div class="stage">
-  <div class="scrim"></div>
-  <div class="shot fx" data-in=".02">
-    <p class="qtag">Towers</p>
-    <h2 class="shot-h">Crawlers clean every facade. Gantries print new floors overnight.</h2>
-  </div>
+<section class="slide" id="city2" style="--pin:1.3" data-tab="2046" data-stops=".6">
+ <div class="stage"><div class="scrim"></div><div class="shot fx" data-in=".02"><p class="qtag">Towers</p><h2 class="shot-h">Crawlers clean every facade. Gantries print new floors overnight.</h2></div>
  </div>
 </section>
 
-<section class="slide" id="city3" style="--pin:1.4" data-tab="2046" data-stops="0,.7">
- <div class="stage">
-  <div class="scrim"></div>
-  <div class="shot fx" data-in=".02">
-    <p class="qtag">Port and streets</p>
-    <h2 class="shot-h">Cranes, sorters and street bots, each built for one job.</h2>
-  </div>
+<section class="slide" id="city3" style="--pin:1.3" data-tab="2046" data-stops=".6">
+ <div class="stage"><div class="scrim"></div><div class="shot fx" data-in=".02"><p class="qtag">Port and streets</p><h2 class="shot-h">Cranes, sorters and street bots, each built for one job.</h2></div>
  </div>
 </section>
 
-<section class="slide" id="city4" style="--pin:1.9" data-tab="2046" data-stops="0,.45,.92">
- <div class="stage">
-  <div class="scrim"></div>
-  <div class="shot fx" data-in=".02" data-out=".6">
-    <p class="qtag">Rooftops and bridges</p>
-    <h2 class="shot-h">Rooftop farms picked by arms. Bridge cables inspected by snakes.</h2>
-  </div>
-  <p class="bigq" data-in=".66">None of these robots was designed by hand. A startup built the process that makes them.</p>
+<section class="slide" id="city4" style="--pin:1.7" data-tab="2046" data-stops=".35,.92">
+ <div class="stage"><div class="scrim"></div><div class="shot fx" data-in=".02" data-out=".6"><p class="qtag">Rooftops and bridges</p><h2 class="shot-h">Rooftop farms picked by arms. Bridge cables inspected by snakes.</h2></div><p class="bigq" data-in=".66">None of these robots was designed by hand. A startup built the process that makes them.</p>
  </div>
 </section>
 
-<!-- THESIS -->
-<section class="slide" id="today" style="--pin:2.2" data-tab="Thesis" data-stops="0,.38,.55,.7,.84,.97">
+<section class="slide" id="today" style="--pin:2.2" data-tab="Thesis" data-stops="0,.5,.8,.97">
  <div class="stage">
-  <div class="card" data-in="0" data-out=".86">
+  <div class="card long" data-in="0" data-out=".86">
     <p class="qtag">Thesis · the world today</p>
     <h2 class="h">Today, every robot is a custom project that starts from zero.</h2>
     <p class="lede">The human body is one possible design, and it has limits. A general-purpose humanoid can match human capability. A machine shaped by its task can exceed it. The question is how far automation can go once building that machine is easy.</p>
@@ -450,210 +464,80 @@ input[type=range]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px
  </div>
 </section>
 
-<!-- OVERVIEW -->
-<section class="slide" id="company" style="--pin:2.2" data-tab="Overview" data-stops="0,.3,.72,.97">
- <div class="stage">
-  <div class="wordmark lead" data-in="0" data-out=".2">The startup behind this world</div>
-  <div class="card" data-in=".2">
-    <p class="qtag">Overview</p>
-    <h2 class="h">We propose a generalized process for creating task-specific robots.</h2>
-    <p class="lede">Given details on a specific task, we iterate over modular combinations to find the robot design that performs best. Then we use reinforcement learning to create a specialized model for the task. A hybrid pipeline of mass production and skilled human assembly builds the final robot.</p>
-    <p class="lede">A contract model and reusable components give us positive unit economics and sustainability. Ultimately, we want to lower the barrier to entry for manufacturing and reinvigorate domestic manufacturing and innovation.</p>
-  </div>
+<section class="slide" id="company" style="--pin:2.0" data-tab="Overview" data-stops=".85">
+ <div class="stage"><div class="card long"><p class="qtag">Overview</p><h2 class="h">We propose a generalized process for creating task-specific robots.</h2><p class="lede">Given details on a specific task, we iterate over various modular combinations in order to determine which robot design performs the best. Then, we use reinforcement learning in order to create a specialized model for the task. A hybrid pipeline of mass production and skilled human assembly then creates the final robot.</p><p class="lede">Despite limitations of task-specific robots when compared to generalized designs, we achieve positive unit-economics as well as sustainability through a contract model and reusable components. Ultimately, we hope to lessen the barrier to entry for manufacturing, reinvigorating domestic manufacturing and innovation.</p></div>
  </div>
 </section>
 
-<section class="slide" id="questions" style="--pin:1.5" data-tab="Overview" data-stops="0,.5">
+<section class="slide" id="questions" style="--pin:1.5" data-tab="Overview" data-stops=".5">
  <div class="stage">
   <div class="qgrid">
-    <p class="qtag">How this world gets built · the four BASES questions</p>
-    <div class="qrow fx" data-in=".0"><span class="qn">Q1</span><div><p class="qq">Will sim-to-real be solved? What happens to companies built to sell robot data?</p><p class="qa">Sim-to-real will be solved. Robot data companies will either fall or adapt into robot data generation pipelines.</p></div></div>
-    <div class="qrow fx" data-in=".08"><span class="qn">Q2</span><div><p class="qq">Which form factors, labor markets and export controls?</p><p class="qa">Data companies become simulation farms or post-training contractors, and collection moves to wearable technology in daily life.</p></div></div>
-    <div class="qrow fx" data-in=".16"><span class="qn">Q3</span><div><p class="qq">Humanoids or task-specific machines?</p><p class="qa">It is not a binary question. Humanoids win in homes. Task-specific machines win in small businesses and bulk manufacturing.</p></div></div>
-    <div class="qrow fx" data-in=".24"><span class="qn">Q4</span><div><p class="qq">Which job goes first, and what are the unit economics?</p><p class="qa">Manufacturing goes first. Task-specific robots built cheaply but robustly from a shared parts library make the unit economics work.</p></div></div>
+    <p class="qtag">The four BASES questions · our answers</p>
+    <div class="qrow fx" data-in="0"><span class="qn">Q1</span><div><p class="qq">Will sim-to-real be solved, or sample efficiency get high enough to train policies quickly on little data? What then happens to companies built to sell robot data?</p><p class="qa">Sim-to-real will be solved, and our database of actuator and robot capabilities mapped to tasks keeps the data needed small. Robot data companies will either fall or adapt into robot data generation pipelines.</p></div></div>
+    <div class="qrow fx" data-in=".08"><span class="qn">Q2</span><div><p class="qq">What form factors will robot data companies use, which labor markets will the data come from, and what export controls will appear?</p><p class="qa">They will turn into simulation farms, or post-training contractors that we contract with, and data collection moves to wearable technology in daily life.</p></div></div>
+    <div class="qrow fx" data-in=".16"><span class="qn">Q3</span><div><p class="qq">Humanoids or task-specific machines: which wins in homes, warehouses and factories, and why?</p><p class="qa">Not a binary question. Humanoids win in homes. Task-specific machines win in small businesses and bulk manufacturing.</p></div></div>
+    <div class="qrow fx" data-in=".24"><span class="qn">Q4</span><div><p class="qq">Which job will robots take over first at scale, and what do the unit economics look like against human labor?</p><p class="qa">Manufacturing first. Task-specific robots built cheaply but robustly from a shared parts library make the unit economics really cheap.</p></div></div>
   </div>
  </div>
 </section>
 
-<!-- Q1 -->
-<section class="slide" id="world" style="--pin:2" data-tab="Q1 · Sim-to-real" data-stops="0,.2,.4,.6,.9">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q1 · Will sim-to-real be solved?</p>
-    <h2 class="h">Sim-to-real will be solved.</h2>
-    <ol class="reasons">
-      <li>World models generate 3D worlds from prompts, as World Labs' Marble already does.</li>
-      <li>Physics engines like MuJoCo, run by far more capable AI, simulate enormous amounts of data, and RL closes the gap.</li>
-      <li>Smarter models need less data. AI designs more efficient actuation and policies with fewer actuators.</li>
-      <li>Compute keeps scaling, making custom world generation and accurate physics affordable.</li>
-    </ol>
-  </div>
-  <div class="pipe"><span data-on=".02">SCAN</span><em>→</em><span data-on=".2">POINTS</span><em>→</em><span data-on=".3">MESH</span><em>→</em><span data-on=".42">PHYSICS</span><em>→</em><span data-on=".62">WORLDS</span></div>
+<section class="slide" id="world" style="--pin:2.0" data-tab="Simulation" data-stops=".9">
+ <div class="stage"><div class="card long"><p class="qtag">Simulation · answers Q1</p><h2 class="h">For each customer task, we design a world simulation that has parameters customized for the task.</h2><p class="lede">We set precise definitions of the task at hand, and determine site constraints (ceiling heights, power access, where people walk).</p><p class="lede">As described in our technical details section below, we believe we can ensure accuracy in the training environment, measuring friction, stiffness, fragility of items, etc. We also find benchmarks within the real world and see where our robots can best optimize.</p><div class="answer"><b>Q1</b><p>Sim-to-real will be solved. World models generate 3D worlds from prompts, RL with physics engines like MuJoCo simulates tons of data, smarter models need less data, and growing compute makes custom worlds and accurate physics affordable.</p></div></div>
  </div>
 </section>
 
-<section class="slide" id="sim" style="--pin:2.2" data-tab="Q1 · Sim-to-real" data-stops="0,.3,.72,.97">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q1 · Why should a robot optimized in simulation work in reality?</p>
-    <h2 class="h">Simulation pre-training, system identification, domain randomization, and a little real-world fine-tuning.</h2>
-    <p class="lede">We vary friction, contact, actuator response, sensor noise and delay during training, and give the deployed policy only what its real sensors measure. Shortlisted designs are tested under held-out conditions and validated physically.</p>
-    <p class="cite">Research: <a href="https://arxiv.org/abs/2305.17110" target="_blank" rel="noopener">IndustReal, RSS 2023</a> shows bounded transfer for contact-rich assembly.</p>
-  </div>
-  <div class="divider fx" data-in=".2" data-out=".92"></div>
-  <div class="sidelab real fx" data-in=".2" data-out=".92">REAL</div>
-  <div class="sidelab sim fx" data-in=".2" data-out=".92">SIM</div>
-  <div class="chartp fx" data-in=".22" data-out=".92">
-    <p class="ph" style="margin-bottom:4px"><span>Gripper force during one pick</span><span>real vs. simulated</span></p>
-    <svg viewBox="0 0 520 120" role="img" aria-label="Real and simulated force traces converge">
-      <line x1="30" y1="110" x2="510" y2="110" stroke="#4a5577" stroke-width="1"/>
-      <line x1="30" y1="10" x2="30" y2="110" stroke="#4a5577" stroke-width="1"/>
-      <text x="4" y="60" fill="#9AA6C4" font-size="10" font-family="IBM Plex Mono,monospace">force</text>
-      <text x="470" y="120" fill="#9AA6C4" font-size="10" font-family="IBM Plex Mono,monospace">time</text>
-      <path id="gap5" fill="rgba(255,59,92,.28)" d=""/>
-      <path id="real5" fill="none" stroke="#ffffff" stroke-width="2" d=""/>
-      <path id="trace5" fill="none" stroke="#3DDCFF" stroke-width="2" stroke-dasharray="5 3" d=""/>
-    </svg>
-  </div>
+<section class="slide" id="search" style="--pin:2.0" data-tab="RL Framework" data-stops=".6">
+ <div class="stage"><div class="card long"><p class="qtag">RL Framework · answers Q1</p><h2 class="h">In our simulation, we begin by evaluating a “parent configuration,” a well-understood robot design that best matches the requisite task.</h2><p class="lede">From there, we evaluate hundreds of modularized variants (candidate configurations) from our parts library that can interact with the customer’s task.</p><p class="lede">Before we run any specific simulations, we utilize a physical constraint model to reject designs that exceed torque, payload, connector load limits, etc.</p><div class="answer"><b>Q1</b><p>Companies built to sell robot data will either fall or adapt, moving into robot data generation pipelines: custom prompt or world engineering, efficient pipeline development for RL engineers, and labs for novel task generation.</p></div></div>
  </div>
 </section>
 
-<section class="slide" id="search" style="--pin:2.2" data-tab="Q1 · Sim-to-real" data-stops="0,.2,.55,.97">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q1 · RL framework · design search</p>
-    <h2 class="h">From our simulation, we assemble hundreds of modular variants from our parts library.</h2>
-    <p class="lede">Before any simulation runs, a physical constraint model rejects designs that exceed torque, payload or connector load limits. A pretrained, morphology-aware policy and value function then screens the rest down to a shortlist.</p>
-    <p class="cite">Research: <a href="https://arxiv.org/abs/2110.03659" target="_blank" rel="noopener">Transform2Act, ICLR 2022</a> shares experience across design and control.</p>
-  </div>
+<section class="slide" id="train" style="--pin:2.2" data-tab="RL Framework" data-stops=".9">
+ <div class="stage"><div class="card long"><p class="qtag">RL Framework · answers Q2</p><h2 class="h">For each finalist, a model writes a reward function suitable for that variant’s structure.</h2><p class="lede">The control policies of the finalists are refined through thousands of randomized simulations involving the requisite task. Finalists are ranked on specific criteria chosen by the customer (e.g. task success, cycle time, dollar cost) to find the winner.</p><p class="lede">Real-world results from each deployment are fed back into our database and module calibrations, so we can make better future recommendations with our model.</p><div class="answer"><b>Q2</b><p>Robot data companies will turn into simulation farms, or into post-training contractors that our startup contracts with. Data collection comes from wearable technology in daily life.</p></div></div>
  </div>
 </section>
 
-<section class="slide" id="train" style="--pin:2.4" data-tab="Q1 · Sim-to-real" data-stops="0,.12,.45,.8,.97">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q1 · RL framework · training</p>
-    <h2 class="h">Each finalist trains in thousands of randomized simulations.</h2>
-    <p class="lede">For each finalist, a model writes reward code suited to that variant's morphology. A separate verifier searches for simulator exploits and keeps every action within physical constraints. Finalists are ranked on criteria the customer chooses, such as task success, cycle time or dollar cost.</p>
-  </div>
+<section class="slide" id="bank" style="--pin:2.2" data-tab="Robot Framework" data-stops=".45,.92">
+ <div class="stage"><div class="card long"><p class="qtag">Robot Framework · answers Q3</p><h2 class="h">Our design is highly modular, so once our RL framework settles on the best arrangement of components, we simply put the pieces together.</h2><p class="lede">Any of our designs can be made from combinations of core components, joints, structural links, locomotive devices, end effectors, and sensors, all of which can be linked together with a universal connector.</p><p class="lede">This enables a broad range of capabilities, both from the same manufacturing process and from the same instantiated robot.</p><div class="answer"><b>Q3</b><p>It is not a binary question. Humanoids win in homes. Task-specific machines win in small businesses and bulk manufacturing, because a modular body shaped by the task exceeds human capability instead of copying it.</p></div></div>
  </div>
 </section>
 
-<section class="slide" id="memory" style="--pin:2.6" data-tab="Q1 · Sim-to-real" data-stops="0,.14,.39,.58,.99">
- <div class="stage">
-  <div class="card" data-in="0" data-out=".4">
-    <p class="qtag">Q1 · Technical insight · our database</p>
-    <h2 class="h">Every deployment makes the next recommendation better.</h2>
-    <p class="lede">Our database maps actuator and robot output modalities to tasks and problem spaces. Real-world results from each deployment flow back into it and into our module calibrations.</p>
-  </div>
-  <div class="record" data-cls="fold" data-on=".13">
-    <div data-on=".01">task</div>
-    <div data-on=".04">robot assembly</div>
-    <div data-on=".07">trained policy</div>
-    <div data-on=".1">real-world results</div>
-  </div>
-  <div class="scrub fx" data-in=".15" data-out=".4">
-    <div class="kv"><span class="k">past orders stored</span><span class="mono">growing</span></div>
-    <div class="track"><i data-fillvar data-in=".16" data-dur=".23"></i><b data-fillvar data-in=".16" data-dur=".23"></b></div>
-  </div>
-  <div class="split-line fx" data-in=".41" data-out=".62"></div>
-  <div class="splitlab l fx" data-in=".41" data-out=".62">
-    <p class="ph" style="margin:0"><span>An early order</span><span>no neighbors</span></p>
-    <p class="splitt">The search starts from scratch.</p>
-  </div>
-  <div class="splitlab r fx" data-in=".41" data-out=".62">
-    <p class="ph" style="margin:0"><span>A later order</span><span>nearest neighbors</span></p>
-    <p class="splitt">The search starts from similar past robots and their controllers.</p>
-  </div>
-  <div class="card fx" data-in=".64">
-    <p class="qtag">Q1 · Does every new robot body learn from scratch?</p>
-    <h2 class="h">No. Changing the body does not erase useful knowledge.</h2>
-    <p class="lede">The policy is conditioned on the assembly graph, so a controller reuses skills while adapting to a new arrangement. Experience from earlier projects narrows the search for the next one, so sample efficiency rises with every order.</p>
-    <p class="cite">Research: <a href="https://doi.org/10.1109/TRO.2023.3284362" target="_blank" rel="noopener">Learning Modular Robot Control Policies, IEEE T-RO 2023</a> generalizes to unseen modular designs.</p>
-  </div>
+<section class="slide" id="build" style="--pin:2.0" data-tab="Manufacturing" data-stops=".7">
+ <div class="stage"><div class="card long"><p class="qtag">Manufacturing · answers Q4</p><h2 class="h">We mass-produce components for our project, and we would aim to own the entire vertical stack when it comes to these mechanical components.</h2><p class="lede">Our core techniques are CNC machining, injection molding, and PCB assembly. Parts of this process are highly automatable; in other parts, though, it truly is more efficient to hire skilled, human labor.</p><p class="lede">To assemble our robots, we simply join these components with universal connectors. This is highly automatable.</p><div class="answer"><b>Q4</b><p>Unit economics are really cheap: task-specific robots are optimized for cheap but robust construction, and our parts and actuators library means cheap components at scale.</p></div></div>
  </div>
 </section>
 
-<!-- Q2 -->
-<section class="slide" id="data" style="--pin:1.9" data-tab="Q2 · Robot data" data-stops="0,.31,.64,.97">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q1 · Q2 · What happens to robot data companies?</p>
-    <h2 class="h">Companies built to sell robot data will either fall or adapt.</h2>
-    <p class="lede">The ones that adapt become robot data generation pipelines: custom prompt and world engineering, efficient pipeline development for RL engineers, and labs that invent novel tasks to push robot capabilities.</p>
-  </div>
-  <div class="timeline">
-    <div class="eras">
-      <div class="era fx" data-in=".03"><h4>FORM FACTORS</h4><p>Robot data companies turn into simulation farms, or into post-training contractors that startups like ours contract with.</p></div>
-      <div class="era fx" data-in=".34"><h4>LABOR MARKETS</h4><p>Data collection moves to wearable technology in daily life, and value shifts to the rare real-world cases simulation cannot produce.</p></div>
-      <div class="era fx" data-in=".66"><h4>EXPORT CONTROLS</h4><p>As trained robot models and real-world data gain value, expect them to be controlled the way advanced chips and frontier AI models are.</p></div>
-    </div>
-  </div>
+<section class="slide" id="cost" style="--pin:1.8" data-tab="Economics" data-stops=".85">
+ <div class="stage"><div class="card long"><p class="qtag">Economics · answers Q4</p><h2 class="h">Despite the typical disadvantages of task-specific hardware when compared to generalized approaches, we achieve positive unit economics through our business model.</h2><p class="lede">Our biggest markets would be specialized tasks in manufacturing, agriculture, and warehouse automation, but we also see significant use-cases for small businesses.</p><p class="lede">We are contracted with companies, charge a fee when implementing a new robot design, and implement a subscription model to charge for new instances and to lease the models’ components. We achieve economies of scale by reusing components for new applications. In doing so, we also maintain sustainability and circumvent the scarcity of the requisite rare earth magnets.</p><div class="answer"><b>Q4</b><p>Robots will take over manufacturing first, then agriculture and warehouse automation, with small businesses close behind.</p></div></div>
  </div>
 </section>
 
-<!-- Q3 -->
-<section class="slide" id="bank" style="--pin:2.4" data-tab="Q3 · Humanoids vs. specialists" data-stops="0,.34,.52,.72,.88,.99">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q3 · Robot framework</p>
-    <h2 class="h">Our design is highly modular.</h2>
-    <p class="lede">Once our RL framework settles on the best arrangement of components, we simply put the pieces together. Any design is made from core components, joints, structural links, locomotive devices, end effectors and sensors, all linked by a universal connector. One manufacturing process, and one instantiated robot, can cover a broad range of capabilities.</p>
-    <p class="cite">Research: <a href="https://www.pnas.org/doi/10.1073/pnas.2519129123" target="_blank" rel="noopener">Agile legged locomotion in reconfigurable modular robots, PNAS 2026</a>.</p>
-  </div>
+<section class="slide" id="close" style="--pin:1.7" data-tab="Impact" data-stops=".6">
+ <div class="stage"><div class="card long closer2"><p class="qtag">Impact</p><h2 class="h">Our model will dramatically boost manufacturing capability, especially domestically.</h2>
+<p class="lede">This enables the country, for the first time regarding matters that are not related to national security, to circumvent the recent crisis regarding cost of labor in the US. Our priorities include replacing or assisting with dangerous manufacturing and first-response jobs.</p>
+<p class="lede">Ultimately, we also believe that we will enable new innovations. Since humanoid robots simply match human capabilities, while our robots exceed human capabilities, we aim to push the frontier of what is possible through engineering.</p>
+<p class="lede">In terms of scale, we also foresee a recursive element. Implementing our own robots in order to optimize our manufacturing process will improve our efficiency.</p>
+<div class="btns"><button class="btn" type="button" data-go="td1">Technical details ↓</button><button class="btn alt" type="button" data-go="city1">Back to 2046</button></div>
+<p class="foot">Team I Hope This Form Can Handle Emojis 🌞 · Ishan Pendyala, Paul Nieuwerburgh, David He, Tyler Rizzo, Lillian Xu · BASES 6-Hour Challenge · Oct 24, 2026</p></div>
  </div>
 </section>
 
-<section class="slide" id="humans" style="--pin:1.9" data-tab="Q3 · Humanoids vs. specialists" data-stops="0,.5,.97">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q3 · Humanoids or task-specific machines?</p>
-    <h2 class="h">It is not a binary question.</h2>
-    <p class="lede">Humanoids win in homes, where tasks change all day and the space is built for people. Task-specific machines win in small businesses and bulk manufacturing, where the same work repeats. Humanoids match human capability. Specialists, shaped by their task, exceed it.</p>
-  </div>
+<section class="slide" id="td1" style="--pin:2.0" data-tab="Technical Details" data-stops=".9">
+ <div class="stage"><div class="card long"><p class="qtag">Technical details · 1 of 4</p><h2 class="h">How can we predict the behavior of a newly assembled robot?</h2><p class="lede">Known components make the modeling problem smaller. We reuse their physical descriptions, then calibrate the interactions introduced by the new assembly.</p><p class="lede"><b>Technical details:</b> The assembly graph determines geometry, mass distribution, and joint connections. Component models supply actuator behavior; short calibration routines estimate remaining errors from friction, connector flexibility, and tolerances. Stronger AI could automate experiment selection and model correction.</p><p class="cite">Research: <a href="https://www.pnas.org/doi/10.1073/pnas.2519129123" target="_blank" rel="noopener">Agile legged locomotion in reconfigurable modular robots — PNAS, 2026</a> demonstrates physical modular assemblies with learned control.</p></div>
  </div>
 </section>
 
-<!-- Q4 -->
-<section class="slide" id="build" style="--pin:2" data-tab="Q4 · Economics" data-stops="0,.44,.7,.99">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q4 · Manufacturing</p>
-    <h2 class="h">We mass-produce our own components and own the vertical stack.</h2>
-    <p class="lede">Our core techniques are CNC machining, injection molding and PCB assembly. Parts of this process are highly automatable; in others, skilled human labor is more efficient. To assemble a robot, we simply join components with universal connectors, and when a robot is no longer needed, we take it apart and reuse its components.</p>
-  </div>
+<section class="slide" id="td2" style="--pin:2.4" data-tab="Technical Details" data-stops=".95">
+ <div class="stage"><div class="card long"><p class="qtag">Technical details · 2 of 4</p><h2 class="h">Does every robot body in a new environment need to learn from scratch?</h2><p class="lede">Changing the body does not erase all useful knowledge. A controller can reuse skills while adapting to the new arrangement.</p><p class="lede"><b>Technical details:</b> Condition the policy on an assembly graph containing module properties and connectivity. Share parameters across compatible modules, pretrain across many simulated configurations, and fine-tune unfamiliar assemblies. Initially restrict transfer claims to a defined component and task family.</p><p class="cite">Research: <a href="https://doi.org/10.1109/TRO.2023.3284362" target="_blank" rel="noopener">Learning Modular Robot Control Policies — IEEE Transactions on Robotics, 2023</a> demonstrates shared policies and generalization to unseen modular designs.</p></div>
  </div>
 </section>
 
-<section class="slide" id="cost" style="--pin:1.7" data-tab="Q4 · Economics" data-stops="0,.6">
- <div class="stage">
-  <div class="card">
-    <p class="qtag">Q4 · Which job goes first, and what are the unit economics?</p>
-    <h2 class="h">Robots take over manufacturing first, and the unit economics are cheap.</h2>
-    <p class="lede">Despite the usual disadvantages of task-specific hardware, our business model gives us positive unit economics. We contract with companies, charge a fee to implement each new robot design, and run a subscription for new instances and leased components. Reusing components gives us economies of scale, keeps us sustainable, and works around the scarcity of rare earth magnets.</p>
-    <p class="src">Biggest markets: specialized tasks in manufacturing, agriculture and warehouse automation, plus small businesses.</p>
-  </div>
+<section class="slide" id="td3" style="--pin:2.0" data-tab="Technical Details" data-stops=".95">
+ <div class="stage"><div class="card long"><p class="qtag">Technical details · 3 of 4</p><h2 class="h">How can we find good designs of new robots at a low cost?</h2><p class="lede">The system learns which designs deserve expensive testing. Experience from earlier projects narrows the search for the next one.</p><p class="lede"><b>Technical details:</b> Reject physically infeasible assemblies first, screen candidates with inexpensive evaluations, then allocate longer training to promising or uncertain designs. Evaluate learning curves so a potentially superior body is not rejected merely because it learns slowly. RL trains behavior; design search can use RL, Bayesian optimization, or evolutionary methods.</p><p class="cite">Research: <a href="https://arxiv.org/abs/2110.03659" target="_blank" rel="noopener">Transform2Act — ICLR, 2022</a> demonstrates experience sharing across design and control. This is a conference paper.</p></div>
  </div>
 </section>
 
-<!-- IMPACT -->
-<section class="slide" id="close" style="--pin:1.6" data-tab="Impact" data-stops="0,.55">
- <div class="stage">
-  <div class="closer fx" data-in=".2">
-    <p class="qtag" style="justify-self:center">Impact</p>
-    <h2 class="h">Generalize the pipeline. Specialize the robot.</h2>
-    <div class="impacts">
-      <div><b>Domestic manufacturing</b><span>Dramatically boosts manufacturing capability at home, getting around the cost-of-labor crisis in the US, with positive implications for national security.</span></div>
-      <div><b>Dangerous jobs first</b><span>Our priorities include replacing or assisting with dangerous manufacturing and first-response jobs.</span></div>
-      <div><b>Beyond human limits</b><span>Humanoids simply match human capabilities. Our robots exceed them, pushing the frontier of what engineering can do.</span></div>
-      <div><b>Recursive scale</b><span>Using our own robots to optimize our manufacturing makes the whole process more efficient.</span></div>
-    </div>
-    <div class="btns">
-      <button class="btn" type="button" data-go="questions">The four answers ↑</button>
-      <button class="btn alt" type="button" data-go="city1">Back to 2046</button>
-    </div>
-    <p class="foot">Team [Name] · BASES 6-Hour Challenge · Oct 24, 2026</p>
-  </div>
+<section class="slide" id="td4" style="--pin:2.0" data-tab="Technical Details" data-stops=".95">
+ <div class="stage"><div class="card long"><p class="qtag">Technical details · 4 of 4</p><h2 class="h">Why should a robot optimized in simulation work in reality?</h2><p class="lede">Simulation needs to capture the variations that affect successful control. Robust policies can tolerate some modeling error, with physical testing identifying consequential mismatches.</p><p class="lede"><b>Technical details:</b> Vary friction, contact, actuator response, sensor noise, and delay during training. Give the deployed policy only measurements its actual sensors provide. Test shortlisted designs under held-out conditions and physically validate them; use calibration or targeted post-training when transfer falls short.</p><p class="cite">Research: <a href="https://arxiv.org/abs/2305.17110" target="_blank" rel="noopener">IndustReal — RSS, 2023</a> demonstrates bounded transfer for contact-rich assembly. It supports this mechanism, not universal sim-to-real transfer.</p></div><div class="divider fx" data-in=".2" data-out=".92"></div><div class="sidelab real fx" data-in=".2" data-out=".92">REAL</div><div class="sidelab sim fx" data-in=".2" data-out=".92">SIM</div>
  </div>
 </section>
 
@@ -814,20 +698,22 @@ const IDX={};sections.forEach((s,i)=>IDX[s.id]=i);
 let stops=[];
 function computeStops(){stops=[];sections.forEach((s,i)=>{(s.dataset.stops||'0').split(',').forEach(f=>stops.push(Math.round(tops[i]+(hts[i]-VH)*parseFloat(f))));});stops.sort((a,b)=>a-b);}
 computeStops();
-let tween=null,lastInput=0,ignoreScrollUntil=0;
+let tween=null,lastInput=0,ignoreScrollUntil=0,queued=0;
 function nearestStop(y){let k=0,b=1e9;for(let i=0;i<stops.length;i++){const d=Math.abs(stops[i]-y);if(d<b){b=d;k=i;}}return k;}
 function snapTo(y){
   y=clamp(y,0,Math.max(0,document.documentElement.scrollHeight-VH));
   const y0=scrollY,dist=Math.abs(y-y0);if(dist<2)return;
   if(REDUCED){window.scrollTo(0,y);return;}
-  tween={y0,y,t0:performance.now(),dur:clamp(480+dist/VH*240,520,1400)};
+  tween={y0,y,t0:performance.now(),dur:clamp(430+dist/VH*150,460,950)};
 }
 function stepTween(now){if(!tween)return;const u=clamp((now-tween.t0)/tween.dur);const e=u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
-  window.scrollTo(0,tween.y0+(tween.y-tween.y0)*e);if(u>=1){tween=null;ignoreScrollUntil=now+150;}}
+  window.scrollTo(0,tween.y0+(tween.y-tween.y0)*e);if(u>=1){tween=null;ignoreScrollUntil=now+150;if(queued){const q=queued;queued=0;step(q);}}}
 function step(dir){const k=nearestStop(scrollY);let tgt=k+dir;const cur=stops[k];
   if(dir>0&&cur>scrollY+4)tgt=k;if(dir<0&&cur<scrollY-4)tgt=k;tgt=clamp(tgt,0,stops.length-1);snapTo(stops[tgt]);}
-addEventListener('wheel',e=>{if(e.ctrlKey)return;e.preventDefault();const now=performance.now(),gap=now-lastInput;lastInput=now;
-  if(tween||gap<180||Math.abs(e.deltaY)<3)return;step(e.deltaY>0?1:-1);},{passive:false});
+addEventListener('wheel',e=>{if(e.ctrlKey)return;e.preventDefault();const now=performance.now(),gap=now-lastInput;lastInput=now;const dy=e.deltaY;
+  if(Math.abs(dy)<1.5)return;
+  if(tween){if(gap>110&&Math.abs(dy)>=25)queued=dy>0?1:-1;return;}
+  if(gap<110)return;step(dy>0?1:-1);},{passive:false});
 addEventListener('keydown',e=>{const tg=e.target;const k=e.key;
   if(tg&&(tg.tagName==='INPUT'||tg.tagName==='TEXTAREA'||tg.isContentEditable))return;
   if(tg&&tg.tagName==='BUTTON'&&(k===' '||k==='Enter'))return;
@@ -837,12 +723,12 @@ addEventListener('keydown',e=>{const tg=e.target;const k=e.key;
 let ty0=null;
 addEventListener('touchstart',e=>{ty0=e.touches.length===1?e.touches[0].clientY:null;},{passive:true});
 addEventListener('touchmove',e=>{const el=e.target;if(el&&el.closest&&(el.closest('input')||el.closest('#tabs')))return;e.preventDefault();},{passive:false});
-addEventListener('touchend',e=>{if(ty0===null)return;const dy=ty0-e.changedTouches[0].clientY;ty0=null;if(Math.abs(dy)>36&&!tween)step(dy>0?1:-1);},{passive:true});
+addEventListener('touchend',e=>{if(ty0===null)return;const dy=ty0-e.changedTouches[0].clientY;ty0=null;if(Math.abs(dy)>22){if(tween)queued=dy>0?1:-1;else step(dy>0?1:-1);}},{passive:true});
 let idleT=0;
 addEventListener('scroll',()=>{if(tween||performance.now()<ignoreScrollUntil)return;clearTimeout(idleT);
   idleT=setTimeout(()=>{if(tween)return;const k=nearestStop(scrollY);if(Math.abs(stops[k]-scrollY)>3)snapTo(stops[k]);},240);},{passive:true});
-const TABS=['2046','Thesis','Overview','Q1 · Sim-to-real','Q2 · Robot data','Q3 · Humanoids vs. specialists','Q4 · Economics','Impact'];
-const TABSUB={'Q1 · Sim-to-real':'simulation · RL framework','Q3 · Humanoids vs. specialists':'robot framework','Q4 · Economics':'manufacturing · market'};
+const TABS=['2046','Thesis','Overview','Simulation','RL Framework','Robot Framework','Manufacturing','Economics','Impact','Technical Details'];
+const TABSUB={};
 const tabsNav=document.getElementById('tabs');
 const tabBtns=TABS.map((name,k)=>{const b=document.createElement('button');b.type='button';
   b.innerHTML='<span class="tn">'+String(k+1).padStart(2,'0')+'</span>'+name+(TABSUB[name]?'<small>'+TABSUB[name]+'</small>':'')+'<i></i>';
@@ -1721,7 +1607,7 @@ function buildCity(g){
     const rot=new THREE.Group();rot.position.set(0,22,1);tg.add(rot);for(let b=0;b<3;b++){const bl=bx(.6,10,.15,M(0xE8ECF6));bl.position.y=5;const piv=new THREE.Group();piv.rotation.z=b*2.094;piv.add(bl);rot.add(piv);}turb.push(rot);}
   // stars
   const sp=[];for(let i=0;i<500;i++){const a=r()*6.28,e=.15+r()*.8;sp.push(Math.cos(a)*240*Math.cos(e),40+Math.sin(e)*140,Math.sin(a)*240*Math.cos(e)-60);}
-  const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));const stars=new THREE.Points(sg,new THREE.PointsMaterial({color:0xcfe0ff,size:.6,transparent:true,opacity:.8,sizeAttenuation:true,fog:false}));stars.frustumCulled=false;g.add(stars);
+  const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));const stars=new THREE.Points(sg,new THREE.PointsMaterial({color:0xcfe0ff,size:.6,transparent:true,opacity:.8,sizeAttenuation:true,fog:false}));stars.frustumCulled=false;
   CITYO={crawlers,gan,head,built,drones,dglow,parcel,dpar,ND,bots,blights,bpar,NB,farms,cranes,sorters,snake,turb};
   this.o=CITYO;
 }
@@ -1747,32 +1633,38 @@ function cityAnimate(o,t){
   o.snake.forEach((s,i)=>{const z=clamp(head-i*.42,-10,10);s.position.set(0,cabY(z)+.05,z);});
   o.turb.forEach((r,k)=>r.rotation.z=t*(.5+k*.05));
 }
-const CITY_SHOT=(keys)=>({share:'city',fog:[0x161a36,60,230],key:.65,hemi:.6,sky:'neon',build:buildCity,update(p,t){cityAnimate(CITYO,t);camPath(p,keys);}});
+const CITY_SHOT=(keys)=>({share:'city',fog:[0xf4e4d2,90,270],key:1.3,hemi:1.15,sky:'neon',build:buildCity,update(p,t){cityAnimate(CITYO,t);camPath(p,keys);}});
 
 /* ---------- section → scene ---------- */
-const SD={today:S[0],company:S[1],bank:S[2],world:S[4],sim:S[5],search:S[6],train:S[7],memory:S[9],data:S[11],build:S[10],close:S[13]};
+const SD={today:S[0],company:S[1],world:S[4],search:S[6],train:S[7],bank:S[2],build:S[10],close:S[13],td2:S[9],td4:S[5]};
 SD.city1=CITY_SHOT([[0,[0,17,80],[0,11,-8]],[1,[12,23,66],[0,10,-12]]]);
 SD.city2=CITY_SHOT([[0,[36,23,20],[14,15,-6]],[1,[29,30,12],[13,18,-8]]]);
 SD.city3=CITY_SHOT([[0,[62,11,34],[38,3,8]],[1,[53,14,41],[36,3,8]]]);
 SD.city4=CITY_SHOT([[0,[-34,19,12],[-18,12,-4]],[.42,[-30,16,9],[-17,12,-4]],[.5,[-3,9,38],[-14,6,18]],[.6,[-2,10,40],[-14,6,18]],[1,[0,80,106],[0,0,-16]]]);
 SD.questions={build:S[13].build,update(p,t){S[13].update.call(this,p,t);camPath(p,[[0,[0,9,19],[0,.5,0]],[1,[0,10,22],[0,.3,0]]]);}};
-SD.humans={build:S[12].build,update(p,t){S[12].update.call(this,p*.46,t);}};
 SD.cost={build:S[12].build,update(p,t){S[12].update.call(this,.52+p*.48,t);}};
+SD.td1={build:S[2].build,veil:p=>S[2].veil(.55+p*.45),update(p,t){S[2].update.call(this,.55+p*.45,t);}};
+SD.td3={build:S[6].build,update(p,t){S[6].update.call(this,p,t);}};
 const SCN=sections.map(s=>SD[s.id]);
 /* ---------- run ---------- */
 let groups=[];
 function resize(){if(!renderer)return;const w=innerWidth,h=innerHeight;renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.5));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
 function init(){
   if(!glOK||typeof THREE==='undefined')return;
-  scene=new THREE.Scene();scene.fog=new THREE.Fog(0x0B1020,30,95);
+  scene=new THREE.Scene();scene.fog=new THREE.Fog(0xdcecf8,34,125);
   camera=new THREE.PerspectiveCamera(40,1,.05,400);
-  hemi=new THREE.HemisphereLight(0xbfd4ff,0x1a2035,.9);scene.add(hemi);
-  key=new THREE.DirectionalLight(0xffe2c0,1.1);key.position.set(5,9,6);scene.add(key);
+  hemi=new THREE.HemisphereLight(0xeaf4ff,0x9aa8d4,1.2);scene.add(hemi);
+  key=new THREE.DirectionalLight(0xfff0d8,1.25);key.position.set(5,9,6);scene.add(key);
   rim=new THREE.DirectionalLight(0x6fd8ff,.55);rim.position.set(-6,4,-6);scene.add(rim);
   const shared={};groups=SCN.map((d,i)=>{if(d.share&&shared[d.share])return shared[d.share];const g=new THREE.Group();g.visible=false;try{d.build(g);}catch(e){console.error('build',i,e);d.broken=true;}scene.add(g);if(d.share)shared[d.share]=g;return g;});
   resize();
   requestAnimationFrame(frame);
 }
+function brightenAll(root){const hsl={h:0,s:0,l:0};const c=new THREE.Color();
+  root.traverse(o=>{const ms=o.material?(Array.isArray(o.material)?o.material:[o.material]):[];
+    ms.forEach(m=>{if(!m||!m.color||m.userData._b)return;m.userData._b=true;if(m.wireframe)return;m.color.getHSL(hsl);if(hsl.l<.45)m.color.setHSL(hsl.h,Math.min(1,hsl.s*.85+.1),.5+hsl.l*.6);});
+    if(o.isInstancedMesh&&o.instanceColor){const a=o.instanceColor.array;for(let i=0;i<a.length;i+=3){c.setRGB(a[i],a[i+1],a[i+2]);c.getHSL(hsl);if(hsl.l<.4){c.setHSL(hsl.h,hsl.s,.45+hsl.l*.7);a[i]=c.r;a[i+1]=c.g;a[i+2]=c.b;}}o.instanceColor.needsUpdate=true;}});}
+let lastVx=-1;
 const dawn=document.getElementById('dawn'),veil=document.getElementById('veil'),neon=document.getElementById('neon');
 let lastActive=-1;const clock={t0:performance.now()};
 function frame(now){
@@ -1794,8 +1686,8 @@ function frame(now){
   const d=SCN[active];
   groups.forEach(g=>g.visible=false);if(!d.broken)groups[active].visible=true;
   const p=progress[active];
-  key.intensity=d.key||1.1;hemi.intensity=d.hemi||.9;
-  const fg=d.fog||[0x0B1020,30,95];scene.fog.color.setHex(fg[0]);scene.fog.near=fg[1];scene.fog.far=fg[2];
+  key.intensity=d.key||1.25;hemi.intensity=d.hemi||1.2;
+  const fg=d.fog||[0xdcecf8,34,125];scene.fog.color.setHex(fg[0]);scene.fog.near=fg[1];scene.fog.far=fg[2];
   if(!d.broken){try{d.update(p,REDUCED?0:t);}catch(e){console.error('update',active,e);d.broken=true;}}
   const v=Math.max(veilAmt,d.veil?d.veil(p):0);veil.style.opacity=v.toFixed(3);
   const w=innerWidth,h=innerHeight;
@@ -1805,7 +1697,12 @@ function frame(now){
     d.splitRender('L');renderer.setViewport(0,0,hw,h);renderer.setScissor(0,0,hw,h);renderer.render(scene,camera);
     d.splitRender('R');renderer.setViewport(hw,0,w-hw,h);renderer.setScissor(hw,0,w-hw,h);renderer.render(scene,camera);
     renderer.setScissorTest(false);renderer.setViewport(0,0,w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
-  }else{renderer.render(scene,camera);}
+  }else{
+    const sh=w>=1000?Math.max(0,(Math.min(w*.46,640)+(w-200))/2-w/2):0;
+    if(sh>0)camera.setViewOffset(w,h,-sh,0,w,h);else camera.clearViewOffset();
+    if(sh!==lastVx){document.documentElement.style.setProperty('--vx',sh+'px');lastVx=sh;}
+    renderer.render(scene,camera);camera.clearViewOffset();
+  }
 }
 const ready=document.fonts&&document.fonts.ready?Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,1500))]):Promise.resolve();
 ready.then(()=>{layout();computeStops();init();});
