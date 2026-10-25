@@ -416,6 +416,14 @@ input[type=range]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px
 .answer b{font-family:var(--f-display);font-stretch:115%;font-weight:800;font-size:18px;color:var(--orange);line-height:1.2}
 .answer p{margin:0;font-size:clamp(13.5px,1.02vw,15px);line-height:1.5;color:var(--ink)}
 .qgrid{width:min(700px,calc(100% - var(--sb) - 40px))}
+
+.btn.wl{justify-self:start;display:inline-block;text-decoration:none;font-size:13.5px;padding:12px 18px;background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 20px rgba(238,90,36,.3)}
+.btn.wl:hover{background:#d84c19}
+a.btn{text-decoration:none;display:inline-block}
+#tabs .wlink{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:9px 10px;background:var(--orange);color:#fff;border-radius:2px;text-decoration:none;margin-bottom:6px;box-shadow:0 4px 14px rgba(238,90,36,.25)}
+#tabs .wlink:hover{background:#d84c19}
+#tabs .wlink:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+@media (max-width:999px){#tabs .wlink{flex:none;margin:0 4px 0 0;padding:6px 8px;font-size:10px}}
 </style>
 </head><body>
 
@@ -424,11 +432,11 @@ input[type=range]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px
 <div id="neon"></div>
 <canvas id="gl" aria-hidden="true"></canvas>
 <div id="veil"></div>
-<nav id="tabs" aria-label="Sections"></nav>
+<nav id="tabs" aria-label="Sections"><a class="wlink" href="https://docs.google.com/document/d/1s9H7N1v-HXAI5KqxN2hwu5s0tvW1RYxZj6MGypfYMKo/edit?tab=t.0" target="_blank" rel="noopener">Technical writeup ↗</a></nav>
 <div id="hint">SCROLL <i>&darr;</i></div>
 <main id="story">
 <section class="slide" id="city1" style="--pin:1.4" data-tab="2046" data-stops="0">
- <div class="stage"><div class="scrim"></div><div class="shot"><p class="qtag">BASES 6-Hour Challenge · Robotics · Team I Hope This Form Can Handle Emojis 🌞</p><h1 class="shot-h">2046. Every job has a robot built for it.</h1><p class="shot-sub">Not one robot that tries to do everything. Thousands of specialists, each shaped by the task it was made for.</p></div>
+ <div class="stage"><div class="scrim"></div><div class="shot"><p class="qtag">BASES 6-Hour Challenge · Robotics · Team I Hope This Form Can Handle Emojis 🌞</p><h1 class="shot-h">2046. Every job has a robot built for it.</h1><p class="shot-sub">Not one robot that tries to do everything. Thousands of specialists, each shaped by the task it was made for.</p><a class="btn wl" href="https://docs.google.com/document/d/1s9H7N1v-HXAI5KqxN2hwu5s0tvW1RYxZj6MGypfYMKo/edit?tab=t.0" target="_blank" rel="noopener">Read our technical writeup: Beyond the Human Form ↗</a></div>
  </div>
 </section>
 
@@ -516,7 +524,7 @@ input[type=range]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px
 <p class="lede">This enables the country, for the first time regarding matters that are not related to national security, to circumvent the recent crisis regarding cost of labor in the US. Our priorities include replacing or assisting with dangerous manufacturing and first-response jobs.</p>
 <p class="lede">Ultimately, we also believe that we will enable new innovations. Since humanoid robots simply match human capabilities, while our robots exceed human capabilities, we aim to push the frontier of what is possible through engineering.</p>
 <p class="lede">In terms of scale, we also foresee a recursive element. Implementing our own robots in order to optimize our manufacturing process will improve our efficiency.</p>
-<div class="btns"><button class="btn" type="button" data-go="td1">Technical details ↓</button><button class="btn alt" type="button" data-go="city1">Back to 2046</button></div>
+<div class="btns"><button class="btn" type="button" data-go="td1">Technical details ↓</button><a class="btn" href="https://docs.google.com/document/d/1s9H7N1v-HXAI5KqxN2hwu5s0tvW1RYxZj6MGypfYMKo/edit?tab=t.0" target="_blank" rel="noopener">Full technical writeup ↗</a><button class="btn alt" type="button" data-go="city1">Back to 2046</button></div>
 <p class="foot">Team I Hope This Form Can Handle Emojis 🌞 · Ishan Pendyala, Paul Nieuwerburgh, David He, Tyler Rizzo, Lillian Xu · BASES 6-Hour Challenge · Oct 24, 2026</p></div>
  </div>
 </section>
